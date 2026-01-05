@@ -28,27 +28,13 @@ html{
 
 .card{
     margin: 0 auto;
-    padding: 2em;
+    padding: 25px;
     width: 300px;
     background: #1c1f2b;
     text-align: center;
     border-radius: 10px;
     position: relative;
     color: white;
-}
-
-.card::after{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: linear-gradient(red, blue);
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    padding: 10px;
-    border-radius: 10px;
 }
 
 #map::after{
@@ -83,7 +69,7 @@ html{
     margin-bottom: 20px;
     padding: 2em;
     width: 95.75%;
-    background: black;
+    background-image: linear-gradient(to bottom, Black 60%, red);
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -101,7 +87,7 @@ html{
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: conic-gradient(from var(--angle),transparent 60%, red, blue, green, white, black, yellow, purple, cyan, aqua, brown, grey);
+    background-image: conic-gradient(from var(--angle),transparent 60%, red);
     top: 50%;
     left: 50%;
     translate: -50% -50%;
@@ -127,9 +113,49 @@ html{
     margin: 0 auto;
     width: 75px;
     height: 20px;
-    background: #1c1f2b;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
     text-align: center;
     border-radius: 10px;
     position: relative;
     color: white;
+    left: -600px;
+}
+
+.credits{
+    margin: 0 auto;
+    padding: 25px;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: -650px;
+    top: -300px;
+    z-index: 5;
+}
+
+.Home{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -550px;
+}
+
+.top-image{
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: 20px;
+    top: 17.5px;
+    z-index: 10;
 }
