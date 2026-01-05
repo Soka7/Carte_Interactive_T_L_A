@@ -6,22 +6,13 @@
 ![Motoc](Nvmbro....jpeg)
 
 # Festival
-**Mp0 TermD**
+**Mp4 TermD**
 
-Un festival de 17h a 1h. Quel chemin est le plus court en utilisant l'algorithme glouton ?
+Une carte interactive.
 
 **Developed by [Soka7](https://github.com/Soka7), [Yolked64](https://github.com/Yolked64)**
 
 ## ✨Features
-
-- 🖼️ **Tracé du chemin sur le plan**: Matplotlib **[Soka7](https://github.com/Soka7)**
-- 🖼️ **GUI**: Tkinter **[Yolked64](https://github.com/Yolked64)**
-- 🌈 **Génération aléatoire des couleurs**: random **[Yolked64](https://github.com/Yolked64)**
-- 📐 **Calcul des distances**: math **[Yolked64](https://github.com/Yolked64)**
-- 🎯 **Algorithme glouton**: matplotlib, time **[Soka7](https://github.com/Soka7)**
-- 🎯 **Algorithme naif**: **[Soka7](https://github.com/Soka7)**
-- 🎪 **Trouve la scene et les coordonées de l'artiste.**: **[Soka7](https://github.com/Soka7)**
-- 🔧 **README**: **[Soka7](https://github.com/Soka7)**
 
 ## 🚀 Infos
 
@@ -35,7 +26,3 @@ pip install -r requirements.txt
 ```bash
 https://github.com/mhucka/readmine/blob/main/README.md?plain=1
 ```
-
-**Professeur: [E.DALDEGAN](https://github.com/edaldegan)**
------------------------------------------------------------
-**[.](https://www.youtube.com/embed/jjnt-KS0ozE)**
