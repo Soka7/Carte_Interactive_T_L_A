@@ -208,8 +208,8 @@ html{
 }
 .AboutUsVideo
 {
-    position: relative;
     left: 27.5%;
+    display: relative
 }
 .top-image{
     margin: 0 auto;
