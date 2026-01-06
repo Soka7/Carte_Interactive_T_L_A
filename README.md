@@ -5,12 +5,12 @@
 
 ![Motoc](Nvmbro....jpeg)
 
-# Festival
+# Carte interactive
 **Mp4 TermD**
 
 Une carte interactive.
 
-**Developed by [Soka7](https://github.com/Soka7), [Yolked64](https://github.com/Yolked64)**
+**Developed by [Soka7](https://github.com/Soka7), [Yolked64](https://github.com/Yolked64), [tchoupilegoat](https://github.com/tchoupilegoat)**
 
 ## ✨Features
 
