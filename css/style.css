@@ -119,6 +119,7 @@ html{
     position: relative;
     color: white;
     left: -600px;
+    margin-left: 100px;
 }
 
 .credits{
