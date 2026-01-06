@@ -1,5 +1,161 @@
+html{
+    background: #1c1f2b;
+}
 
 #map{    
     width:60%;
-    height:500px;
+    height:425px;
+    margin: 0 auto;
+    padding: 2em;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.content{    
+    width:95.5%;
+    height: 50%;
+    margin: 0 auto;
+    padding: 2em;
+    background-image: linear-gradient(to bottom, transparent, #1c1f2b 60%);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.card{
+    margin: 0 auto;
+    padding: 25px;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+}
+
+#map::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(red, blue);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 50px;
+}
+
+.content::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to bottom, transparent 60%, white);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.Top{
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 2em;
+    width: 95.75%;
+    background-image: linear-gradient(to bottom, Black 60%, red);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.Top::after, .Top::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),transparent 60%, red);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    border-radius: 10px;
+    animation: spin 3s linear infinite;
+}
+.Top::before{
+    filter: blur(2em);
+}
+
+@keyframes spin{
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
+
+.styled{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -600px;
+}
+
+.credits{
+    margin: 0 auto;
+    padding: 25px;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: -650px;
+    top: -300px;
+    z-index: 5;
+}
+
+.Home{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -550px;
+}
+
+.top-image{
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: 20px;
+    top: 17.5px;
+    z-index: 10;
 }
