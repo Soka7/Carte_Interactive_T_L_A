@@ -21,3 +21,18 @@ marker.bindTooltip("Miroir d'eau", {
    offset: [-15,-15], // on décale un peu la bulle vers le haut et à gauche,
    opacity: 0.6 // semi transparente
 }).openTooltip();
+
+function onMapClick(e) {
+    let marker = L.marker(e.latlng);
+        // ajout à la carte
+    marker.addTo(map);
+        // bulle avec texte
+    marker.bindTooltip(e.latlng, {
+    direction: "top",
+    permanent: true,
+    offset: [-15,-15], // on décale un peu la bulle vers le haut et à gauche,
+    opacity: 0.6 // semi transparente
+    }).openTooltip();
+}
+
+map.on('click', onMapClick);
