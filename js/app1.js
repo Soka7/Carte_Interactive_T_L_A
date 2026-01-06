@@ -27,12 +27,19 @@ function onMapClick(e) {
         // ajout à la carte
     marker.addTo(map);
         // bulle avec texte
-    marker.bindTooltip(e.latlng, {
+    marker.bindTooltip(e.latlng.toString(), {
     direction: "top",
     permanent: true,
     offset: [-15,-15], // on décale un peu la bulle vers le haut et à gauche,
     opacity: 0.6 // semi transparente
     }).openTooltip();
+
+    var circle = L.circle(e.latlng, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 10
+    }).addTo(map);
 }
 
 map.on('click', onMapClick);
