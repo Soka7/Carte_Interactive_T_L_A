@@ -16,6 +16,11 @@ Une carte interactive.
 
 ## 🚀 Infos
 
+```bash
+#Discord pour le projet.
+https://discord.gg/pEbEvhgC
+```
+
 ### Basiques
 ```bash
 # Installer les dependances

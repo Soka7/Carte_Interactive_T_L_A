@@ -242,3 +242,21 @@ html{
     left: 0;
     margin: 10px;
 }
+
+.Expand{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: 1000px;
+    top: 200px;
+    z-index: 50;
+}
+
+.Expand:hover .inner{
+    opacity: 1;
+}
