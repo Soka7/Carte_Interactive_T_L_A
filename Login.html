@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Enjeux Citoyens</title>
+</head>
+    <body>
+        <div class = "Top">
+            <img src="OIP.webp" alt="Pin" class="top-image">
+            <button class="styled" type="button" onclick="window.location.href='Enjeux.html';">Enjeux</button>
+            <button class="Home" type="button" onclick="window.location.href='index1.html';">Home</button>
+            <button class="AboutUs" type="button" onclick="window.location.href='AboutUs.html';">A propos</button>
+            <button class="Login" type="button" onclick="window.location.href='Login.html';">Connexion</button>
+        </div>
+        <div class="content">
+        <form method="get" class="LoginFormulaire" action="AdminView.html">
+            <div>
+                <h1 class="LoginTitre"> Veiller vous connecter afin d'acceder au reste du site.</h1>
+                <div>
+                    <label>Identifiant : </label> 
+                    <input type="text" name="login">
+                </div>
+                <div>
+                    <label>Adresse email : </label> 
+                    <input type="mail" name="mail">
+                </div>
+                <div>
+                    <label>Mot de passe : </label> 
+                    <input type="password" name="mdp">
+                </div>
+                <div class="bouton">
+                    <input type="submit" value="Se connecter" />
+                </div>
+            </div>            
+        </form>
+        </div>
+    </body>
+</html>
