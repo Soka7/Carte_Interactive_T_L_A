@@ -13,7 +13,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // insertion du marqueur pour le Miroir d'eau
 let marker = L.marker([47.2150, -1.5491], {title: "More info",});
     // ajout à la carte
-marker.addTo(map);
+marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Miroir d'eau</h1><p>Le miroir d'eau de Nantes est une pièce d'eau peu profonde située dans le centre-ville de Nantes.</p><br><video controls autoplay><source src='Nantes.mp4'></source></video><br><p>The video may occur to be unavailable. it is NOT a code error and may be occured by bad video quality or bad engine. We take NO reponsability about that.</p></div>");
     // bulle avec texte
 marker.bindTooltip("Miroir d'eau", {
    direction: "top",
