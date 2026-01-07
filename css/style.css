@@ -11,6 +11,18 @@ html{
     text-align: center;
     border-radius: 1000000000000000px;
     position: relative;
+    cursor: crosshair;
+}
+
+#map.expand{
+    width: 2000px;
+    height: 1000px;
+    border-radius: 0%;
+    padding: 0%;
+    left: -300px;
+    top: -150px;
+    position: fixed;
+    z-index: 3;
 }
 
 .content{    
@@ -35,19 +47,6 @@ html{
     border-radius: 10px;
     position: relative;
     color: white;
-}
-
-#map::after{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: linear-gradient(red, blue);
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    padding: 50px;
 }
 
 .content::after{
@@ -178,6 +177,8 @@ html{
     text-align: center;
     font-size: 48px;
     color: white;
+    text-align: left;
+    position: flex;
 }
 
 .AboutUsIntro
@@ -186,10 +187,11 @@ html{
     font-size: 20px;
     color: white;
     width: 900px;
-    position: relative;
+    position: flex;
     left: 25%;
     top: 10%;
     word-wrap: break-word;
+    text-align: left;
 }
 
 .AboutUsQuestion
@@ -197,8 +199,9 @@ html{
     text-align: center;
     font-size: 30px;
     color: white;
-    position: relative;
+    position: flex;
     top: 15%;
+    text-align: left;
 }
 
 .AboutUsDef
@@ -206,11 +209,12 @@ html{
     text-align: center;
     font-size: 20px;
     color: white;
-    position: relative;
+    position: flex;
     width: 900px;
     left: 25%;
     top: 15%;
     word-wrap: break-word;
+    text-align: left;
 }
 
 .AboutUsVsaTitre
@@ -256,4 +260,98 @@ html{
     left: 20px;
     top: 17.5px;
     z-index: 10;
+}
+
+.top-image{
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: 20px;
+    top: 17.5px;
+    z-index: 10;
+}
+
+.box{    
+    width:95.5%;
+    height: 50%;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.Expand{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: fixed;
+    color: white;
+    left: 1000px;
+    top: 650px;
+    z-index: 500000000000000000000000000000;
+}
+
+.Expand.ex{
+    position: fixed;
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    left: 1500px;
+    top: 700px;
+    z-index: 500000000000000000000000000000;
+}
+
+.Expand:hover .inner{
+    opacity: 1;
+}
+
+.pop{
+    background-image: linear-gradient(red, #1c1f2b);
+    z-index: -1;
+}
+
+.pop_text{
+    color: white;
+    background-color: transparent;
+    position: relative;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.pop::after, .pop::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),transparent 60%, blue);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    border-radius: 10px;
+    animation: spin 3s linear infinite;
+}
+.pop::before{
+    filter: blur(2em);
 }
