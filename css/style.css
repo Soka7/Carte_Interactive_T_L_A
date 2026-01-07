@@ -11,6 +11,7 @@ html{
     text-align: center;
     border-radius: 1000000000000000px;
     position: relative;
+    cursor: crosshair;
 }
 
 #map.expand{
@@ -271,4 +272,39 @@ html{
 
 .Expand:hover .inner{
     opacity: 1;
+}
+
+.pop{
+    background-image: linear-gradient(red, #1c1f2b);
+    z-index: -1;
+}
+
+.pop_text{
+    color: white;
+    background-color: transparent;
+    position: relative;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.pop::after, .pop::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),transparent 60%, blue);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    border-radius: 10px;
+    animation: spin 3s linear infinite;
+}
+.pop::before{
+    filter: blur(2em);
 }
