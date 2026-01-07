@@ -42,4 +42,17 @@ function onMapClick(e) {
     }).addTo(map);
 }
 
+//...
+
 map.on('click', onMapClick);
+
+const map_ = document.getElementById("map")
+const btn = document.querySelector(".Expand")
+
+btn.addEventListener("click", () => {
+    map_.classList.toggle("expand")
+    map.invalidateSize()
+    btn.classList.toggle("ex")
+})
+
+//ChatGPT utilise pour mieux comprendre la source des erreurs.
