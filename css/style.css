@@ -123,7 +123,7 @@ button{
     position: relative;
     color: white;
     left: -600px;
-    margin-left: 100px;
+    margin-left: 150px;
 }
 
 .credits{
@@ -150,6 +150,19 @@ button{
     position: relative;
     color: white;
     left: -550px;
+}
+
+.Login
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -450px;
 }
 
 .AboutUs
@@ -220,6 +233,27 @@ button{
     left: 27.5%;
     display: relative
 }
+
+.LoginTitre
+{
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+.LoginFormulaire
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+}
+
+.LoginFormulaire input {
+  margin-bottom: 10px;
+}
+
 .top-image{
     margin: 0 auto;
     width: 50px;
@@ -312,4 +346,11 @@ button{
 }
 .pop::before{
     filter: blur(2em);
+}
+
+.Griffith img{
+    padding-top: 20px;
+    height: 500px;
+    width: auto;
+    padding-bottom: 55px;
 }
