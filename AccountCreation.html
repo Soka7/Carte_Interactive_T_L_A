@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    <title>Se Connecter</title>
+    <title>Créer votre Compte</title>
 </head>
     <body>
         <div class = "Top">
@@ -16,26 +16,30 @@
             <button class="Login" type="button" onclick="window.location.href='Login.html';">Connexion</button>
         </div>
         <div class="content">
-        <form method="post" class="LoginFormulaire" action="TraitementLogin.php">
+        <form method="post" class="LoginFormulaire" action="TraitementCompte.php">
             <div>
-                <h1 class="LoginTitre"> Veuiller vous connecter afin d'acceder au reste du site.</h1>
+                <h1 class="LoginTitre"> Veuiller créer votre compte</h1>
                 <div>
                     <label>Pseudonyme : </label> 
                     <input type="text" name="login">
+                </div>
+                <div>
+                    <label>Adresse Mail : </label>
+                    <input type="text" name="mail">
                 </div>
                 <div>
                     <label>Mot de passe : </label> 
                     <input type="password" name="mdp">
                 </div>
                 <div class="bouton">
-                    <input type="submit" value="Se connecter" />
+                    <input type="submit" value="Créer" />
                 </div>
                 <div>
                     <img src="css/griffith-anime.gif" style="padding-bottom: 120px;">
                 </div>
             </div>            
         </form>
-        <button type="button" onclick="window.location.href='AccountCreation.html';">Créer un compte ?</button>
+        <button type="button" onclick="window.location.href='Login.html';">Retour</button>
         </div>
     </body>
 </html>
