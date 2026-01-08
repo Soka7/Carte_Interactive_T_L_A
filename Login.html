@@ -18,23 +18,27 @@
         <form method="get" class="LoginFormulaire" action="AdminView.html">
             <div>
                 <h1 class="LoginTitre"> Veiller vous connecter afin d'acceder au reste du site.</h1>
-                <div>
-                    <label>Identifiant : </label> 
-                    <input type="text" name="login">
-                </div>
-                <div>
-                    <label>Adresse email : </label> 
-                    <input type="mail" name="mail">
-                </div>
-                <div>
-                    <label>Mot de passe : </label> 
-                    <input type="password" name="mdp">
-                </div>
-                <div class="bouton">
-                    <input type="submit" value="Se connecter" />
-                </div>
-                <div>
-                    <img src="css/griffith-anime.gif" style="padding-bottom: 120px;">
+                <div class = "login">
+                    <table border="5">
+                        <tr>
+                            <th><label>Identifiant : </label></th>
+                            <td><input type="text" name="login" required></td>
+                        </tr>
+                        <tr>
+                            <th><label>Adresse email : </label></th>
+                            <td><input type="mail" name="mail" required></td>
+                        </tr>
+                        <tr>
+                            <th><label>Mot de passe : </label></th>
+                            <td><input type="password" name="mdp" required></td>
+                        </tr>
+                        <div class="boutonL">
+                            <input type="submit" value="Se connecter" />
+                        </div>
+                    </table>
+                    <div class="G_">
+                        <img src="css/griffith-anime.gif" style="padding-bottom: 120px;">
+                    </div>
                 </div>
             </div>            
         </form>

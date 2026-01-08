@@ -21,11 +21,14 @@ marker.bindTooltip("Miroir d'eau", {
    offset: [-15,-15], // on décale un peu la bulle vers le haut et à gauche,
    opacity: 0.6 // semi transparente
 }).openTooltip();
+////////////////////////////////////////////////
+
+var DeuxPins = []
 
 function onMapClick(e) {
     let marker = L.marker(e.latlng, {title: "More info",});
         // ajout à la carte
-    marker.addTo(map);
+    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>You just added a camera.</p><br><form method = 'POST' action = 'Login.html'><td><input type='text' name='login' required></td><input type = 'submit'></form></div>");
         // bulle avec texte
     marker.bindTooltip(e.latlng.toString(), {
     direction: "top",
@@ -40,6 +43,30 @@ function onMapClick(e) {
         fillOpacity: 0.5,
         radius: 10
     }).addTo(map);
+
+    var lati = e.latlng.lat;
+    var long = e.latlng.lng;
+
+    DeuxPins.push([lati, long])
+
+    for (let i = 0; i < DeuxPins.length; i++){
+
+        for (let n = i + 1; n < DeuxPins.length; n++){
+            let p1 = L.latLng(DeuxPins[i])
+            let p2 = L.latLng(DeuxPins[n])
+            let di = p1.distanceTo(p2)
+            var line = L.polyline([DeuxPins[i], DeuxPins[n]], {
+                color: "red",
+                weight: 3,
+                dashArray: "10, 10"
+            }).addTo(map);
+
+            line.bindTooltip(di.toFixed(2), {
+                permanent: false,
+                direction: "center"
+            }).openTooltip();
+        }
+    }
 }
 
 //...
