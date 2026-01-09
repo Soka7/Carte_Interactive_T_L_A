@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2deb2
+-- version 6.0.0-dev+20260103.a60f0f3566
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : mer. 07 jan. 2026 à 11:10
--- Version du serveur : 8.4.7-0ubuntu0.25.10.3
--- Version de PHP : 8.4.11
+-- Host: localhost:3306
+-- Generation Time: Jan 07, 2026 at 08:33 PM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Carte_interactive`
+-- Database: `carte_interactive`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Cameras`
+-- Table structure for table `cameras`
 --
 
-CREATE TABLE `Cameras` (
+CREATE TABLE `cameras` (
   `id_camera` int NOT NULL,
   `coordonnees` text,
   `lien_photo` text,
@@ -38,10 +38,10 @@ CREATE TABLE `Cameras` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Login`
+-- Table structure for table `login`
 --
 
-CREATE TABLE `Login` (
+CREATE TABLE `login` (
   `id` int NOT NULL,
   `pseudo` text,
   `mdp` text,
@@ -50,19 +50,26 @@ CREATE TABLE `Login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Index pour les tables déchargées
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `pseudo`, `mdp`, `email`, `admin`) VALUES
+(1, 'Yolked', 'NotUnderMyWatch', 'leobodinleo@gmail.com', 1);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `Cameras`
+-- Indexes for table `cameras`
 --
-ALTER TABLE `Cameras`
+ALTER TABLE `cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
--- Index pour la table `Login`
+-- Indexes for table `login`
 --
-ALTER TABLE `Login`
+ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 COMMIT;
 

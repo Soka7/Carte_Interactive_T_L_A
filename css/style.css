@@ -392,3 +392,65 @@ table{
     position: relative;
     top: 200px;
 }
+
+.slider{
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-right: 100px;
+}
+
+@keyframes slide {
+    0%   { transform: perspective(1500px) rotateX(-5deg) rotateY(0deg); }
+    100% { transform: perspective(1500px) rotateX(-5deg) rotateY(360deg); }
+}
+
+/* Echec dans le maintien fixe de l'axe de rotation des videos. */
+
+.slider .slider3D{
+    position: relative;
+    transform-style: preserve-3d;
+    background-color: black;
+    transform: perspective(1000px);
+    animation: slide  20s linear infinite;
+    transform: translate(-50%, -50%); /* centre fixe */
+}
+
+.slider .slider3D video{
+    width: 400px;
+    height: 225px;
+    object-fit: cover;
+    transform-style: preserve-3d;
+    position: absolute;
+    transform: 
+        rotateY(calc((360deg / var(--number)) * var(--position))) /* angle sur le cercle */
+        translateZ(1000px);                                       /* distance du centre */ /* 400 / 1000 */
+    backface-visibility: visible;
+    border-radius: 20px;
+}
+
+.contentE{    
+    width:95.5%;
+    height: 77vh;
+    margin: 0 auto;
+    padding: 2em;
+    background-image: linear-gradient(to bottom, transparent, #1c1f2b 60%);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.contentE::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to bottom, transparent 60%, white);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 5px;
+    border-radius: 10px;
+}
