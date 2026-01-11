@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 07, 2026 at 08:33 PM
+-- Generation Time: Jan 11, 2026 at 07:32 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.28
 
@@ -38,11 +38,31 @@ CREATE TABLE `cameras` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `log`
+--
+
+CREATE TABLE `log` (
+  `id_log` int NOT NULL,
+  `temps` text,
+  `type` text,
+  `id_user` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`id_log`, `temps`, `type`, `id_user`) VALUES
+(1, '19:31:20', 'Login', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
-  `id` int NOT NULL,
+  `id_user` int NOT NULL,
   `pseudo` text,
   `mdp` text,
   `email` text,
@@ -53,7 +73,7 @@ CREATE TABLE `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `pseudo`, `mdp`, `email`, `admin`) VALUES
+INSERT INTO `login` (`id_user`, `pseudo`, `mdp`, `email`, `admin`) VALUES
 (1, 'Yolked', 'NotUnderMyWatch', 'leobodinleo@gmail.com', 1);
 
 --
@@ -67,10 +87,27 @@ ALTER TABLE `cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
+-- Indexes for table `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id_log`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
