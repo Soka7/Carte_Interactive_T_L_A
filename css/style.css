@@ -393,6 +393,12 @@ table{
     top: 200px;
 }
 
+.boutonC
+{
+    position: relative;
+    top: 450px;
+}
+
 .slider{
     padding-left: 100px;
     padding-top: 100px;
