@@ -23,4 +23,5 @@ else{
     $RequestCreateUser->execute([$MaxId, $login, $mdp, $mail, 0]);
     header('Location: index1.html');
 }
+exit;
 ?>
