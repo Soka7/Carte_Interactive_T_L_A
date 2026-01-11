@@ -14,14 +14,24 @@ if($Validity["counter"] != 1)
     exit;
 }
 
-$RequestUser = $DataBase->prepare("SELECT admin,id FROM login WHERE pseudo=? AND mdp=?");
+$RequestUser = $DataBase->prepare("SELECT admin,id_user FROM login WHERE pseudo=? AND mdp=?");
 $RequestUser->execute([$login, $mdp]);
 $User = $RequestUser->fetch(PDO::FETCH_ASSOC);
 
 session_start();
 $_SESSION["login"] = $login;
-$_SESSION["id"] = (int) $User["id"];
+$_SESSION["id"] = (int) $User["id_user"];
 $_SESSION["admin"] = $User["admin"];
+
+$RequestIdLog = $DataBase->prepare("SELECT MAX(id_log) AS max FROM log");
+$RequestIdLog->execute();
+$GetIdLog = $RequestIdLog->fetch();
+$IdLog = $GetIdLog['max'] + 1;
+
+$RequestLog = $DataBase->prepare("INSERT INTO 
+                                    `log` (id_log, temps, `type`, id_user)
+                                    VALUES (?, ?, ?, ?)");
+$RequestLog->execute([$IdLog, date("H:i:s"), "Login", (int) $User["id_user"]]);
 
 header('Location: index1.html');
 exit;
