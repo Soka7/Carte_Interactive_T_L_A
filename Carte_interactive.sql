@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 6.0.0-dev+20260103.a60f0f3566
+-- version 5.2.2deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `carte_interactive`
+-- Base de données : `Carte_interactive`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cameras`
+-- Structure de la table `Cameras`
 --
 
-CREATE TABLE `cameras` (
+CREATE TABLE `Cameras` (
   `id_camera` int NOT NULL,
   `coordonnees` text,
   `lien_photo` text,
@@ -70,21 +70,28 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `login`
+-- Index pour les tables déchargées
 --
 
 INSERT INTO `login` (`id_user`, `pseudo`, `mdp`, `email`, `admin`) VALUES
 (1, 'Yolked', 'NotUnderMyWatch', 'leobodinleo@gmail.com', 1);
 
 --
--- Indexes for dumped tables
+-- Index pour la table `Log`
 --
+ALTER TABLE `Log`
+  ADD PRIMARY KEY (`id_log`),
+  ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `cameras`
+-- Index pour la table `Login`
 --
-ALTER TABLE `cameras`
-  ADD PRIMARY KEY (`id_camera`);
+ALTER TABLE `Login`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Contraintes pour les tables déchargées
+--
 
 --
 -- Indexes for table `log`
