@@ -8,20 +8,31 @@ $RequestValidity = $DataBase->prepare("SELECT COUNT(*) AS counter FROM login WHE
 $RequestValidity->execute([$login, $mdp]);
 $Validity = $RequestValidity->fetch();
 
-$RequestAdmin = $DataBase->prepare("SELECT admin AS adm FROM login WHERE pseudo=? AND mdp=?");
-$RequestAdmin->execute([$login, $mdp]);
-$AdminUser = $RequestAdmin->fetch();
+if($Validity["counter"] != 1)
+{
+    header('Location: Login.html');
+    exit;
+}
 
-if($Validity["counter"] == 1 && $AdminUser["adm"] == 1)
-{
-    header('Location: AdminView.html');
-}
-elseif($Validity["counter"] == 1 && $AdminUser["adm"] == 0)
-{
-    header('Location: index1.html');
-}
-else
-{
-    header('Location: Enjeux.html');
-}
+$RequestUser = $DataBase->prepare("SELECT admin,id_user FROM login WHERE pseudo=? AND mdp=?");
+$RequestUser->execute([$login, $mdp]);
+$User = $RequestUser->fetch(PDO::FETCH_ASSOC);
+
+session_start();
+$_SESSION["login"] = $login;
+$_SESSION["id"] = (int) $User["id_user"];
+$_SESSION["admin"] = $User["admin"];
+
+$RequestIdLog = $DataBase->prepare("SELECT MAX(id_log) AS max FROM log");
+$RequestIdLog->execute();
+$GetIdLog = $RequestIdLog->fetch();
+$IdLog = $GetIdLog['max'] + 1;
+
+$RequestLog = $DataBase->prepare("INSERT INTO 
+                                    `log` (id_log, temps, `type`, id_user)
+                                    VALUES (?, ?, ?, ?)");
+$RequestLog->execute([$IdLog, date("H:i:s"), "Login", (int) $User["id_user"]]);
+
+header('Location: index1.html');
+exit;
 ?>

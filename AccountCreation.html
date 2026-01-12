@@ -10,10 +10,11 @@
     <body>
         <div class = "Top">
             <img src="OIP.webp" alt="Pin" class="top-image">
-            <button class="styled" type="button" onclick="window.location.href='Enjeux.html';">Enjeux</button>
+            <button class="styled" type="button" onclick="window.location.href='Enjeux.html';">Sources</button>
             <button class="Home" type="button" onclick="window.location.href='index1.html';">Home</button>
             <button class="AboutUs" type="button" onclick="window.location.href='AboutUs.html';">A propos</button>
             <button class="Login" type="button" onclick="window.location.href='Login.html';">Connexion</button>
+            <button class="AdminButton" type="button" onclick="window.location.href='AdminViewChecker.php';">Administration</button>
         </div>
         <div class="content">
         <form method="post" class="LoginFormulaire" action="TraitementCompte.php">
@@ -21,15 +22,15 @@
                 <h1 class="LoginTitre"> Veuiller créer votre compte</h1>
                 <div>
                     <label>Pseudonyme : </label> 
-                    <input type="text" name="login">
+                    <input type="text" name="login" required>
                 </div>
                 <div>
                     <label>Adresse Mail : </label>
-                    <input type="text" name="mail">
+                    <input type="text" name="mail" required>
                 </div>
                 <div>
                     <label>Mot de passe : </label> 
-                    <input type="password" name="mdp">
+                    <input type="password" name="mdp" required>
                 </div>
                 <div class="bouton">
                     <input type="submit" value="Créer" />

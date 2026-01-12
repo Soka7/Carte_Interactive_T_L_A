@@ -2,10 +2,10 @@
 -- version 5.2.2deb2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : dim. 11 jan. 2026 à 13:21
--- Version du serveur : 8.4.7-0ubuntu0.25.10.3
--- Version de PHP : 8.4.11
+-- Host: localhost:3306
+-- Generation Time: Jan 11, 2026 at 07:32 PM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,23 +38,30 @@ CREATE TABLE `Cameras` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Log`
+-- Table structure for table `log`
 --
 
-CREATE TABLE `Log` (
+CREATE TABLE `log` (
   `id_log` int NOT NULL,
   `temps` text,
   `type` text,
   `id_user` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`id_log`, `temps`, `type`, `id_user`) VALUES
+(1, '19:31:20', 'Login', 1);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Login`
+-- Table structure for table `login`
 --
 
-CREATE TABLE `Login` (
+CREATE TABLE `login` (
   `id_user` int NOT NULL,
   `pseudo` text,
   `mdp` text,
@@ -66,11 +73,8 @@ CREATE TABLE `Login` (
 -- Index pour les tables déchargées
 --
 
---
--- Index pour la table `Cameras`
---
-ALTER TABLE `Cameras`
-  ADD PRIMARY KEY (`id_camera`);
+INSERT INTO `login` (`id_user`, `pseudo`, `mdp`, `email`, `admin`) VALUES
+(1, 'Yolked', 'NotUnderMyWatch', 'leobodinleo@gmail.com', 1);
 
 --
 -- Index pour la table `Log`
@@ -90,10 +94,27 @@ ALTER TABLE `Login`
 --
 
 --
--- Contraintes pour la table `Log`
+-- Indexes for table `log`
 --
-ALTER TABLE `Log`
-  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `Login` (`id_user`);
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id_log`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
