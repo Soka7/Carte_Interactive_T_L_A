@@ -1,5 +1,4 @@
 <?php
-$login = $_POST["login"];
 $mail = $_POST["mail"];
 $mdp = $_POST["mdp"];
 
@@ -9,7 +8,7 @@ $RequestExistingUser = $DataBase->prepare("SELECT COUNT(*) AS valid FROM login W
 $RequestExistingUser->execute([$mail]);
 $ExistingUser = $RequestExistingUser->fetch();
 
-if($ExistingUser['valid'] > 0 || !$login || !$mail || !$mdp)
+if($ExistingUser['valid'] > 0 || !$mail || !$mdp)
 {
     header('Location: AccountCreation.html');
 }
@@ -19,10 +18,12 @@ else{
     $GetMaxId = $RequestGetMaxId->fetch();
     $MaxId = $GetMaxId['max'] + 1;
 
+    $HashedMdp = password_hash($mdp, PASSWORD_BCRYPT);
+
     $RequestCreateUser = $DataBase->prepare("INSERT INTO
-                                             login (id_user, pseudo, mdp, email, admin)
-                                             VALUES (?, ?, ?, ?, ?)");
-    $RequestCreateUser->execute([$MaxId, $login, $mdp, $mail, 0]);
+                                             login (id_user, mdp, email, admin)
+                                             VALUES (?, ?, ?, ?)");
+    $RequestCreateUser->execute([$MaxId, $HashedMdp, $mail, 0]);
 
     $RequestIdLog = $DataBase->prepare("SELECT MAX(id_log) AS max FROM log");
     $RequestIdLog->execute();
@@ -32,7 +33,7 @@ else{
     $RequestLog = $DataBase->prepare("INSERT INTO 
                                      `log` (id_log, temps, `type`, id_user)
                                       VALUES (?, ?, ?, ?)");
-    $RequestLog->execute([$IdLog, date("H:i:s"), "Account Creation", $MaxId]);
+    $RequestLog->execute([$IdLog, date("H:i:s"), "Création de compte", $MaxId]);
     header('Location: Login.html');
 }
 exit;

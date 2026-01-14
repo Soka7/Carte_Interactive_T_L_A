@@ -178,6 +178,36 @@ button{
     left: 600px;
 }
 
+.AdminTable
+{
+    position: relative;
+    left: 21%;
+    width: 60%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    border: 5px solid black;
+}
+
+.AdminHead
+{
+    background-color: #e8e8e8;
+    border: 1px solid black;
+}
+.AdminHead tr, .AdminHead th
+{
+    border: 1px solid black;
+}
+
+.AdminBody
+{
+    tr:hover {background-color: #D6EEEE;}
+}
+
+.AdminBody th, .AdminBody tr
+{
+    border: 1px solid black;
+}
+
 .AboutUs
 {
     margin: 0 auto;

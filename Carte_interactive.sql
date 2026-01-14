@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2deb2
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 13 jan. 2026 à 20:48
--- Version du serveur : 8.4.7-0ubuntu0.25.10.3
--- Version de PHP : 8.4.11
+-- Généré le : mer. 14 jan. 2026 à 11:14
+-- Version du serveur : 8.0.44-0ubuntu0.24.04.2
+-- Version de PHP : 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Carte_interactive`
+-- Base de données : `carte_interactive`
 --
 
 -- --------------------------------------------------------
@@ -48,6 +48,15 @@ CREATE TABLE `Log` (
   `id_user` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `Log`
+--
+
+INSERT INTO `Log` (`id_log`, `temps`, `type`, `id_user`) VALUES
+(1, '10:31:09', 'Account Creation', 1),
+(2, '10:32:06', 'Login', 1),
+(3, '10:33:52', 'Login', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +69,13 @@ CREATE TABLE `Login` (
   `email` text,
   `admin` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `Login`
+--
+
+INSERT INTO `Login` (`id_user`, `mdp`, `email`, `admin`) VALUES
+(1, '$2y$10$syBxd9QVxwTX3l0koNzIWudKi/dQ5t6V7XgdBg.Y9e9wlmyDnIt/u', 'leobodinleo@gmail.com', 1);
 
 --
 -- Index pour les tables déchargées
