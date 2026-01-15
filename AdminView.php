@@ -27,18 +27,20 @@
             </tr>
         </thead>
         <tbody class="AdminBody">
+            <?php
+            $DataBase = new PDO('mysql:host=localhost;port=3306;dbname=carte_interactive;charset=utf8','root','ChuckNorris44');
+            $RequestGetAll = $DataBase->prepare("SELECT * FROM log");
+            $RequestGetAll->execute();
+            $Logs = $RequestGetAll->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <?php foreach($Logs as $row): ?>
             <tr>
-                <th>Test 1</th>
-                <th>17h22:53</th>
-                <th>Connexion</th>
-                <th>Test 1</th>
+                <th><?= $row['id_log']?></th> <!-- php syntax from chatgpt, it is a shortcut to the php echo-->
+                <th><?= $row['temps']?></th>
+                <th><?= $row['type']?></th>
+                <th><?= $row['id_user']?></th>
             </tr>
-            <tr>
-                <th>Test2</th>
-                <th>23h17m58s</th>
-                <th>Création de compte</th>
-                <th>Test 2</th>
-            </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
     <p>Bienvenue chez vous ceci est en cours de construction.</p>
