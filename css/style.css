@@ -188,24 +188,40 @@ button{
     border: 5px solid black;
 }
 
+/*
+Table scroll bar made following this post :
+https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixed-THEAD-reloaded.html
+*/
+
 .AdminHead
 {
     background-color: #e8e8e8;
     border: 1px solid black;
+    display: block;
 }
 .AdminHead tr, .AdminHead th
 {
     border: 1px solid black;
 }
+.AdminHead tr th:nth-child(1), .AdminHead tr th:nth-child(2), .AdminHead tr th:nth-child(3), .AdminHead tr th:nth-child(4)
+{
+    width: 17em;
+}
 
 .AdminBody
 {
     tr:hover {background-color: #D6EEEE;}
+    display:block;
+	height: 40em;
+	overflow-y:scroll;
 }
-
 .AdminBody th, .AdminBody tr
 {
     border: 1px solid black;
+}
+.AdminBody tr th:nth-child(1), .AdminBody tr th:nth-child(2), .AdminBody tr th:nth-child(3), .AdminBody tr th:nth-child(4)
+{
+    width: 17em;
 }
 
 .AboutUs
