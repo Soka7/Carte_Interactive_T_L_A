@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1deb3
+-- version 5.2.2deb2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 19 jan. 2026 à 10:32
--- Version du serveur : 8.0.44-0ubuntu0.24.04.2
--- Version de PHP : 8.3.6
+-- Généré le : mar. 13 jan. 2026 à 20:48
+-- Version du serveur : 8.4.7-0ubuntu0.25.10.3
+-- Version de PHP : 8.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `carte_interactive`
+-- Base de données : `Carte_interactive`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cameras`
+-- Structure de la table `Cameras`
 --
 
-CREATE TABLE `cameras` (
+CREATE TABLE `Cameras` (
   `id_camera` int NOT NULL,
   `coordonnees` text,
   `lien_photo` text,
@@ -38,34 +38,23 @@ CREATE TABLE `cameras` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `log`
+-- Structure de la table `Log`
 --
 
-CREATE TABLE `log` (
+CREATE TABLE `Log` (
   `id_log` int NOT NULL,
   `temps` text,
   `type` text,
   `id_user` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Déchargement des données de la table `log`
---
-
-INSERT INTO `log` (`id_log`, `temps`, `type`, `id_user`) VALUES
-(1, '19/01/2026 10:26:13', 'Création de compte', 1),
-(2, '19/01/2026 10:29:10', 'Connexion', 1),
-(3, '19/01/2026 10:29:33', 'Création de compte', 2),
-(4, '19/01/2026 10:29:45', 'Connexion', 2),
-(5, '19/01/2026 10:30:10', 'Connexion', 1);
-
 -- --------------------------------------------------------
 
 --
--- Structure de la table `login`
+-- Structure de la table `Login`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE `Login` (
   `id_user` int NOT NULL,
   `mdp` text,
   `email` text,
@@ -73,34 +62,26 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `login`
---
-
-INSERT INTO `login` (`id_user`, `mdp`, `email`, `admin`) VALUES
-(1, '$2y$10$4GOH47dqnUERdxM4SXcAzuc6Qds4H7pr6XGgjjdU1jHU2gSBx82a.', 'leobodinleo@gmail.com', 1),
-(2, '$2y$10$i8T6oUKgaof0F0RV.WvNnuwjupQ8JdUNMbvYRYnMmmSzoWaBsyGcO', 'DeleteGriffith', 0);
-
---
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `cameras`
+-- Index pour la table `Cameras`
 --
-ALTER TABLE `cameras`
+ALTER TABLE `Cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
--- Index pour la table `log`
+-- Index pour la table `Log`
 --
-ALTER TABLE `log`
+ALTER TABLE `Log`
   ADD PRIMARY KEY (`id_log`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Index pour la table `login`
+-- Index pour la table `Login`
 --
-ALTER TABLE `login`
+ALTER TABLE `Login`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -108,10 +89,10 @@ ALTER TABLE `login`
 --
 
 --
--- Contraintes pour la table `log`
+-- Contraintes pour la table `Log`
 --
-ALTER TABLE `log`
-  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`);
+ALTER TABLE `Log`
+  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `Login` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
