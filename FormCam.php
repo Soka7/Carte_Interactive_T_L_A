@@ -1,15 +1,36 @@
 <?php
-$host = 'localhost';
-$db = 'Carte_Interactive';
-$user = 'root';
-$pass = 'ChuckNorris44';
-$charset = 'utf8mb4';
+session_start();
 
-$dsn = 'mysql:host='.$host.';dbname='.$db.';charset='.$charset;
+// Vérifie qu'une session a été commencé suite a une connexion, sinon, renvoie sur la page de connexion.
+if(!$_SESSION['id'])
+{
+    header('Location: Login.html');
+    exit;
+}
+$coordonnes = $_POST['coordonnees'];
+$Database = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8', 'root', 'ChuckNorris44');
 
-$pdo = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8', 'root', 'ChuckNorris44');
+// Récupère et incrémente l'id qui sera utilisé pour créer la caméra.
+$RequestMaxId = $Database->prepare("SELECT MAX(id_camera) AS max FROM cameras");
+$RequestMaxId->execute();
+$GetMaxId = $RequestMaxId->fetch();
+$MaxId = $GetMaxId['max'] + 1;
 
-$act = $pdo->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie) VALUES(?, ?, ?, ?, ?)');
-$act->execute([1, '2', '3', 4, 5]);
-echo '<p>Erreur4</p>';
+// Ajoute la caméra a la base.
+$AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie) VALUES(?, ?, ?, ?, ?)');
+$AddCam->execute([$MaxId, $coordonnes, 'TO DO !', $_SESSION['id'], 0]);
+
+// Récupère et incrémente l'id qui sera utilisé pour créer la log.
+$RequestMaxIdLog = $Database->prepare("SELECT MAX(id_log) AS max FROM log");
+$RequestMaxIdLog->execute();
+$GetMaxIdLog = $RequestMaxIdLog->fetch();
+$MaxIdLog = $GetMaxIdLog['max'] + 1;
+
+// Ajoute la log, méthode pour la date : https://www.w3schools.com/php/func_date_date.asp
+$RequestLog = $Database->prepare("INSERT INTO 
+                                    `log` (id_log, temps, `type`, id_user)
+                                    VALUES (?, ?, ?, ?)");
+$RequestLog->execute([$MaxIdLog, date("j/m/Y h:i:s"), "Ajout Caméra", $_SESSION['id']]);
+header('Location: index1.html');
+exit;
 ?>

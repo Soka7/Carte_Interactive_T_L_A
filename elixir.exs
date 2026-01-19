@@ -1,3 +1,5 @@
+<!-- A DETRUIRE QUAND NETTOYAGE -->
+
 defmodule ElixirExtractor do
   @moduledoc """
   Module pour simuler un extracteur d'élixir de Clash Royale.
