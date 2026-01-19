@@ -1,36 +1,16 @@
-html{
+/* #region General */
+
+html
+{
     background: red;
     cursor: crosshair;
 }
-
-button{
+button
+{
     cursor: crosshair;
 }
-
-#map{    
-    width:60%;
-    height:425px;
-    margin: 0 auto;
-    padding: 2em;
-    background: #1c1f2b;
-    text-align: center;
-    border-radius: 1000000000000000px;
-    position: relative;
-    cursor: url(Griffith.png), auto;
-}
-
-#map.expand{
-    width: 2000px;
-    height: 1000px;
-    border-radius: 0%;
-    padding: 0%;
-    left: -300px;
-    top: -150px;
-    position: fixed;
-    z-index: 3;
-}
-
-.content{    
+.content
+{    
     width:95.5%;
     height: 50%;
     margin: 0 auto;
@@ -42,19 +22,8 @@ button{
     top: 0;
     left: 0;
 }
-
-.card{
-    margin: 0 auto;
-    padding: 25px;
-    width: 300px;
-    background: #1c1f2b;
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-}
-
-.content::after{
+.content::after
+{
     content: '';
     position: absolute;
     height: 100%;
@@ -68,7 +37,53 @@ button{
     border-radius: 10px;
 }
 
-.Top{
+/* #endregion */
+
+/* #region Properties */
+
+@property --angle
+{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+@property --angle
+{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin
+{
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
+@keyframes bounce
+{
+    50%{
+        transform: translate(0px, 15px)
+    }
+    100%{
+        transform: translate(0px, 0px)
+    }
+}
+@keyframes slide
+{
+    0%   { transform: perspective(1500px) rotateX(-5deg) rotateY(0deg); }
+    100% { transform: perspective(1500px) rotateX(-5deg) rotateY(360deg); }
+}
+
+/* #endregion */
+
+/* #region TopButtons */
+
+.Top
+{
     margin: 0 auto;
     margin-bottom: 20px;
     padding: 2em;
@@ -79,14 +94,8 @@ button{
     position: relative;
     color: white;
 }
-
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-.Top::after, .Top::before{
+.Top::after, .Top::before
+{
     content: '';
     position: absolute;
     height: 100%;
@@ -100,174 +109,12 @@ button{
     border-radius: 10px;
     animation: spin 3s linear infinite;
 }
-.Top::before{
+.Top::before
+{
     filter: blur(2em);
 }
-
-@keyframes spin{
-    from{
-        --angle:0deg;
-    }
-    to{
-        --angle:360deg;
-    }
-}
-
-.styled{
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    left: -600px;
-    margin-left: 150px;
-}
-
-.credits{
-    margin: 0 auto;
-    padding: 25px;
-    width: 300px;
-    background: transparent;
-    text-align: center;
-    border-radius: 10px;
-    position: absolute;
-    color: white;
-    left: -650px;
-    top: -300px;
-    z-index: 5;
-}
-
-.Home{
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    left: -550px;
-}
-
-.Login
+.top-image
 {
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    left: -450px;
-}
-
-.AdminButton
-{
-    margin: 0 auto;
-    width: 105px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    left: 600px;
-}
-
-.AboutUs
-{
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    color: white;
-    left: -500px;
-}
-.AboutUsTitre
-{
-    text-align: center;
-    font-size: 48px;
-    color: white;
-    text-align: left;
-    position: flex;
-}
-
-.AboutUsIntro
-{
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    width: 900px;
-    position: flex;
-    left: 25%;
-    top: 10%;
-    word-wrap: break-word;
-    text-align: left;
-}
-
-.AboutUsQuestion
-{
-    text-align: center;
-    font-size: 30px;
-    color: white;
-    position: flex;
-    top: 15%;
-    text-align: left;
-}
-
-.AboutUsDef
-{
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    position: flex;
-    width: 900px;
-    left: 25%;
-    top: 15%;
-    word-wrap: break-word;
-    text-align: left;
-}
-
-.AboutUsVsaTitre
-{
-    text-align: center;
-    font-size: 30px;
-    color: white;
-}
-.AboutUsVideo
-{
-    left: 27.5%;
-    display: relative
-}
-
-.LoginTitre
-{
-    color: white;
-    text-align: center;
-    font-size: 40px;
-}
-
-.LoginFormulaire
-{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  font-size: 30px;
-}
-
-.LoginFormulaire input {
-  margin-bottom: 10px;
-}
-
-.top-image{
     margin: 0 auto;
     width: 50px;
     height: auto;
@@ -281,16 +128,212 @@ button{
     animation: bounce 2s infinite;
 }
 
-@keyframes bounce {
-    50%{
-        transform: translate(0px, 15px)
-    }
-    100%{
-        transform: translate(0px, 0px)
-    }
+.styled
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -600px;
+    margin-left: 150px;
+}
+.Home
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -550px;
+}
+.Login
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -450px;
+}
+.AdminButton
+{
+    margin: 0 auto;
+    width: 105px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: 600px;
+}
+.AboutUs
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    left: -500px;
 }
 
-.box{    
+/* #endregion */
+
+/* #region index1 */
+
+.card
+{
+    margin: 0 auto;
+    padding: 25px;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+}
+
+#map
+{    
+    width:60%;
+    height:425px;
+    margin: 0 auto;
+    padding: 2em;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 1000000000000000px;
+    position: relative;
+    cursor: url(Griffith.png), auto;
+}
+#map.expand
+{
+    width: 2000px;
+    height: 1000px;
+    border-radius: 0%;
+    padding: 0%;
+    left: -300px;
+    top: -150px;
+    position: fixed;
+    z-index: 3;
+}
+
+.Expand
+{
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    position: fixed;
+    color: white;
+    left: 1000px;
+    top: 650px;
+    z-index: 500000000000000000000000000000;
+}
+.Expand.ex
+{
+    position: fixed;
+    margin: 0 auto;
+    width: 75px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    left: 1500px;
+    top: 700px;
+    z-index: 500000000000000000000000000000;
+}
+.Expand:hover .inner
+{
+    opacity: 1;
+}
+
+.credits
+{
+    margin: 0 auto;
+    padding: 25px;
+    width: 300px;
+    background: transparent;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    color: white;
+    left: -650px;
+    top: -300px;
+    z-index: 5;
+}
+
+/* #endregion */
+
+/* #region AdminPage */
+
+.AdminTable
+{
+    position: relative;
+    left: 21%;
+    width: 60%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    border: 5px solid black;
+}
+
+/*
+Table scroll bar made following this post :
+https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixed-THEAD-reloaded.html
+*/
+
+.AdminHead
+{
+    background-color: #e8e8e8;
+    border: 1px solid black;
+    display: block;
+}
+.AdminHead tr, .AdminHead th
+{
+    border: 1px solid black;
+}
+.AdminHead tr th:nth-child(1), .AdminHead tr th:nth-child(2), .AdminHead tr th:nth-child(3), .AdminHead tr th:nth-child(4)
+{
+    width: 17em;
+}
+
+.AdminBody
+{
+    tr:hover {background-color: #D6EEEE;}
+    display:block;
+	height: 40em;
+	overflow-y:scroll;
+}
+.AdminBody th, .AdminBody tr
+{
+    border: 1px solid black;
+}
+.AdminBody tr th:nth-child(1), .AdminBody tr th:nth-child(2), .AdminBody tr th:nth-child(3), .AdminBody tr th:nth-child(4)
+{
+    width: 17em;
+}
+
+/* #endregion */
+
+/* #region AboutUsPage */
+
+.box
+{    
     width:95.5%;
     height: 50%;
     margin: 0 auto;
@@ -304,56 +347,108 @@ button{
     margin: 10px;
 }
 
-.Expand{
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+.AboutUsTitre
+{
     text-align: center;
-    border-radius: 10px;
-    position: fixed;
+    font-size: 48px;
     color: white;
-    left: 1000px;
-    top: 650px;
-    z-index: 500000000000000000000000000000;
+    text-align: left;
+    position: flex;
 }
-
-.Expand.ex{
-    position: fixed;
-    margin: 0 auto;
-    width: 75px;
-    height: 20px;
-    background-image: linear-gradient(to bottom, Black 60%, #1c1f2b);
+.AboutUsIntro
+{
     text-align: center;
-    border-radius: 10px;
+    font-size: 20px;
     color: white;
-    left: 1500px;
-    top: 700px;
-    z-index: 500000000000000000000000000000;
+    width: 900px;
+    position: flex;
+    left: 25%;
+    top: 10%;
+    word-wrap: break-word;
+    text-align: left;
+}
+.AboutUsQuestion
+{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    position: flex;
+    top: 15%;
+    text-align: left;
+}
+.AboutUsDef
+{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    position: flex;
+    width: 900px;
+    left: 25%;
+    top: 15%;
+    word-wrap: break-word;
+    text-align: left;
+}
+.AboutUsVsaTitre
+{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+.AboutUsVideo
+{
+    left: 27.5%;
+    display: relative
 }
 
-.Expand:hover .inner{
-    opacity: 1;
+/* #endregion */
+
+/* #region LoginPage */
+.LoginTitre
+{
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+.LoginFormulaire
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+}
+.LoginFormulaire input {
+  margin-bottom: 10px;
 }
 
-.pop{
+.boutonL
+{
+    position: relative;
+    top: 200px;
+}
+.boutonC
+{
+    position: relative;
+    top: 450px;
+}
+
+/* #endregion */
+
+/* #region App1 */
+
+.pop
+{
     background-image: linear-gradient(red, #1c1f2b);
     z-index: -1;
 }
-
-.pop_text{
+.pop_text
+{
     color: white;
     background-color: transparent;
     position: relative;
 }
-
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-.pop::after, .pop::before{
+.pop::after, .pop::before
+{
     content: '';
     position: absolute;
     height: 100%;
@@ -367,65 +462,26 @@ button{
     border-radius: 10px;
     animation: spin 3s linear infinite;
 }
-.pop::before{
+.pop::before
+{
     filter: blur(2em);
 }
 
-.Griffith img{
-    padding-top: 20px;
-    height: 500px;
-    width: auto;
-    padding-bottom: 55px;
-}
+/* #endregion */
 
-.leaflet-popup-close-button {
-    color: blue !important;
-}
+/* #region EnjeuxPage */
 
-.leaflet-popup-content-wrapper {
-    background-image: linear-gradient(red, #1c1f2b);
-}
-
-.login{
-    box-shadow: 0px 0px 200px #1c1f2b;
-    height: 530px;
-}
-
-table{
-    position: relative;
-    margin: auto;
-}
-
-.G_{
-    position: relative;
-    top: 500px;
-}
-
-.boutonL{
-    position: relative;
-    top: 200px;
-}
-
-.boutonC
+.slider
 {
-    position: relative;
-    top: 450px;
-}
-
-.slider{
     padding-left: 100px;
     padding-top: 100px;
     padding-right: 100px;
 }
 
-@keyframes slide {
-    0%   { transform: perspective(1500px) rotateX(-5deg) rotateY(0deg); }
-    100% { transform: perspective(1500px) rotateX(-5deg) rotateY(360deg); }
-}
-
 /* Echec dans le maintien fixe de l'axe de rotation des videos. */
 
-.slider .slider3D{
+.slider .slider3D
+{
     position: relative;
     transform-style: preserve-3d;
     background-color: black;
@@ -433,8 +489,8 @@ table{
     animation: slide  20s linear infinite;
     transform: translate(-50%, -50%); /* centre fixe */
 }
-
-.slider .slider3D video{
+.slider .slider3D video
+{
     width: 400px;
     height: 225px;
     object-fit: cover;
@@ -447,7 +503,8 @@ table{
     border-radius: 20px;
 }
 
-.contentE{    
+.contentE
+{    
     width:95.5%;
     height: 77vh;
     margin: 0 auto;
@@ -459,8 +516,8 @@ table{
     top: 0;
     left: 0;
 }
-
-.contentE::after{
+.contentE::after
+{
     content: '';
     position: absolute;
     height: 100%;
@@ -473,3 +530,45 @@ table{
     padding: 5px;
     border-radius: 10px;
 }
+
+/* #endregion */
+
+/* What follows is some cursed programming techniques */
+
+.Griffith img
+{
+    padding-top: 20px;
+    height: 500px;
+    width: auto;
+    padding-bottom: 55px;
+}
+
+.leaflet-popup-close-button
+{
+    color: blue !important;
+}
+
+.leaflet-popup-content-wrapper
+{
+    background-image: linear-gradient(red, #1c1f2b);
+}
+
+.login
+{
+    box-shadow: 0px 0px 200px #1c1f2b;
+    height: 530px;
+}
+
+table
+{
+    position: relative;
+    margin: auto;
+}
+
+.G_
+{
+    position: relative;
+    top: 500px;
+}
+
+
