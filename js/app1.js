@@ -28,7 +28,7 @@ var DeuxPins = []
 function onMapClick(e) {
     let marker = L.marker(e.latlng, {title: "More info",});
         // ajout à la carte
-    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>You just added a camera.</p><br><form method = 'POST' action = 'C:\laragon\www\FormCam.php'><input type='text' name='cam' required><input type = 'submit'></form></div>");
+    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>You just added a camera.</p><br><form method = 'POST' action='FormCam.php'><input type='text' name='cam' required><br><input type = 'text' name = 'coordonnees' required><input type = 'submit'></form></div>");
         // bulle avec texte
     marker.bindTooltip(e.latlng.toString(), {
     direction: "top",
