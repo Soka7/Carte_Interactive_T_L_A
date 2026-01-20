@@ -45,5 +45,22 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <form method = 'POST' action='AdminReq.php' class='AdminForm'>
+        <table class='AdminFormTable'>
+            <tr>
+                <th> Type : </th>
+                <td> <input type="radio" name = "type" value ="log" id="type1" required>
+                <label for="type1"> Log</label>
+                <td> <input type="radio" name = "type" value ="Camera" id="type2" required>
+                <label for="type1"> Camera</label>
+                <td> <input type="radio" name = "type" value ="Utilisateur" id="type3" required>
+                <label for="type1"> Utilisateur</label>
+            </tr>
+            <tr>
+                <th> Id log : </th>
+                <td> <input type="number" name ="idform" value="idform" required> </td>
+            </tr>
+        </table>
+    </form>
     </div>
 </body>
