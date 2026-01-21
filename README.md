@@ -16,6 +16,12 @@ Une carte interactive.
 
 ## 🚀 Infos
 
+Nous avons ete forces de changer le CSS pour qu'il s'adapte aux differentes appareils.
+
+ChatGPT fut utilisé à but d'enseignement notamment pour les sujets suivants:
+-Apprendre a ecrire sur un fichier JSON en PHP.
+-...
+
 ```bash
 #Discord pour le projet.
 https://discord.gg/pEbEvhgC
