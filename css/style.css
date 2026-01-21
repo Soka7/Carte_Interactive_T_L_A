@@ -328,6 +328,17 @@ https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixe
     width: 17em;
 }
 
+.AdminFormTable
+{
+    display: flex;
+    position : absolute;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    top: 35px;
+    left: 30px
+}
 /* #endregion */
 
 /* #region AboutUsPage */

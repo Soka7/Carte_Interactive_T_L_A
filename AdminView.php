@@ -45,11 +45,11 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <form method = 'POST' action='AdminReq.php' class='AdminForm'>
-        <table class='AdminFormTable'>
+    <form method = 'POST' action='AdminDeletion.php' class='AdminForm'>
+        <table class='AdminFormTable' border=5>
             <tr>
                 <th> Type : </th>
-                <td> <input type="radio" name = "type" value ="log" id="type1" required>
+                <td> <input type="radio" name = "type" value ="Log" id="type1" required>
                 <label for="type1"> Log</label>
                 <td> <input type="radio" name = "type" value ="Camera" id="type2" required>
                 <label for="type1"> Camera</label>
