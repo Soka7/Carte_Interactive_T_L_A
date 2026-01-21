@@ -10,8 +10,13 @@ if(!$_SESSION['id'])
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$lien = $_POST['lien_photo'];
-$title = $_POST['cam'];
+$Receive = json_decode(file_get_contents('php://input'), true);
+$Latit = $Receive['latitude'];
+$Longit = $Receive['longitude'];
+$lien = $Receive['lien_photo'];
+$title = $Receive['cam'];
+$Couple = ($Latit . ',' . $Longit);
+
 $Database = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8', 'root', 'ChuckNorris44');
 
 // Récupère et incrémente l'id qui sera utilisé pour créer la caméra.
@@ -22,7 +27,7 @@ $MaxId = $GetMaxId['max'] + 1;
 
 // Ajoute la caméra a la base.
 $AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie, Titre) VALUES(?, ?, ?, ?, ?, ?)');
-$AddCam->execute([$MaxId, 'To Do like fr', $lien, $_SESSION['id'], 0, $title]);
+$AddCam->execute([$MaxId, $Couple, $lien, $_SESSION['id'], 0, $title]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
