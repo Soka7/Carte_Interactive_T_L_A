@@ -29,7 +29,7 @@ function onMapClick(e) {
     let marker = L.marker(e.latlng, {title: "More info",});
 
     // ajout à la carte
-    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>Ajouter une caméra ?</p><br><form method = 'POST' action='FormCam.php'><input type='text' name='cam' required><br><input type = 'text' name = 'coordonnees' required><input type = 'submit'></form></div>");
+    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>Ajouter une caméra ?</p><br><form id = 'FOOORM'><input placeholder = 'Titre' type='text' name='cam' required><br><input placeholder = 'Lien photo (Url)' type = 'text' name = 'lien_photo' required><input id = 'FormBtn' type = 'submit'></form></div>");
     
     // bulle avec texte
     marker.bindTooltip(e.latlng.toString(), {
@@ -38,6 +38,40 @@ function onMapClick(e) {
     offset: [-15,-15], // Décalage a fins ésthétiques.
     opacity: 0.6
     }).openTooltip();
+
+    marker.on("popupopen", () => {
+
+        const frm = document.getElementById('FOOORM');
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const fData = new FormData(frm);
+
+            const data = {
+                cam: fData.get("cam"),
+                lien_photo: fData.get("lien_photo"),
+                latitude: lati,
+                longitude: long
+            };
+
+            fetch('FormCam.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+        });
+
+        const BoutonForm = document.getElementById("FormBtn");
+        if (BoutonForm) {
+            BoutonForm.addEventListener("click", () =>{
+                window.alert("If you are not logged in you will be redirected to the login menu.");
+            });
+        };
+    });
 
     var circle = L.circle(e.latlng, {
         color: 'red',
@@ -71,7 +105,7 @@ function onMapClick(e) {
     }
 }
 
-//...
+//////////////////////////////////////////////////////////////
 
 map.on('click', onMapClick);
 

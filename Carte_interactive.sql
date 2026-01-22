@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 6.0.0-dev+20260103.a60f0f3566
+-- version 5.2.2deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 19, 2026 at 06:02 PM
--- Server version: 8.4.3
--- PHP Version: 8.3.28
+-- Hôte : localhost:3306
+-- Généré le : jeu. 22 jan. 2026 à 19:32
+-- Version du serveur : 8.4.7-0ubuntu0.25.10.3
+-- Version de PHP : 8.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,66 +18,44 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `carte_interactive`
+-- Base de données : `Carte_interactive`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cameras`
+-- Structure de la table `Cameras`
 --
 
-CREATE TABLE `cameras` (
+CREATE TABLE `Cameras` (
   `id_camera` int NOT NULL,
-  `coordonnees` text,
+  `coordonnees` point DEFAULT NULL,
   `lien_photo` text,
   `origin_user` int DEFAULT NULL,
   `verifie` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `cameras`
---
-
-INSERT INTO `cameras` (`id_camera`, `coordonnees`, `lien_photo`, `origin_user`, `verifie`) VALUES
-(1, 'g', 'TO DO !', 1, 0),
-(2, 'gh', 'TO DO !', 1, 0),
-(3, 'gh', 'TO DO !', 1, 0),
-(4, 'o', 'TO DO !', 1, 0);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Structure de la table `Log`
 --
 
-CREATE TABLE `log` (
+CREATE TABLE `Log` (
   `id_log` int NOT NULL,
   `temps` text,
   `type` text,
-  `id_user` int DEFAULT NULL
+  `id_user` int DEFAULT NULL,
+  `id_cam` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `log`
---
-
-INSERT INTO `log` (`id_log`, `temps`, `type`, `id_user`) VALUES
-(1, '19/01/2026 10:26:13', 'Création de compte', 1),
-(2, '19/01/2026 10:29:10', 'Connexion', 1),
-(3, '19/01/2026 10:29:33', 'Création de compte', 2),
-(4, '19/01/2026 10:29:45', 'Connexion', 2),
-(5, '19/01/2026 10:30:10', 'Connexion', 1),
-(6, '19/01/2026 05:50:31', 'Ajout Caméra', 1),
-(7, '19/01/2026 05:50:37', 'Ajout Caméra', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Structure de la table `Login`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE `Login` (
   `id_user` int NOT NULL,
   `mdp` text,
   `email` text,
@@ -85,45 +63,39 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `login`
---
-
-INSERT INTO `login` (`id_user`, `mdp`, `email`, `admin`) VALUES
-(1, '$2y$10$4GOH47dqnUERdxM4SXcAzuc6Qds4H7pr6XGgjjdU1jHU2gSBx82a.', 'leobodinleo@gmail.com', 1),
-(2, '$2y$10$i8T6oUKgaof0F0RV.WvNnuwjupQ8JdUNMbvYRYnMmmSzoWaBsyGcO', 'DeleteGriffith', 0);
-
---
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `cameras`
+-- Index pour la table `Cameras`
 --
-ALTER TABLE `cameras`
+ALTER TABLE `Cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
--- Indexes for table `log`
+-- Index pour la table `Log`
 --
-ALTER TABLE `log`
+ALTER TABLE `Log`
   ADD PRIMARY KEY (`id_log`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_cam` (`id_cam`);
 
 --
--- Indexes for table `login`
+-- Index pour la table `Login`
 --
-ALTER TABLE `login`
+ALTER TABLE `Login`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `log`
+-- Contraintes pour la table `Log`
 --
-ALTER TABLE `log`
-  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`);
+ALTER TABLE `Log`
+  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `Login` (`id_user`),
+  ADD CONSTRAINT `Log_ibfk_2` FOREIGN KEY (`id_cam`) REFERENCES `Cameras` (`id_camera`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

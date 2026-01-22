@@ -10,17 +10,16 @@ if($Type == 'Log')
 }
 else if($Type == 'Camera')
 {
-    $ReqIdCam = $DataBase->prepare("SELECT id_camera AS cam FROM log WHERE id_log = ?");
+    $ReqIdCam = $DataBase->prepare("SELECT id_cam AS cam FROM log WHERE id_log = ?");
     $ReqIdCam->execute([$IdLog]);
     $GetIdCam = $ReqIdCam->fetch();
     $IdCam = $GetIdCam['cam'];
 
-    $ReqDelLog = $DataBase->prepare("DELETE FROM log WHERE id_camera = ?");
+    $ReqDelLog = $DataBase->prepare("DELETE FROM log WHERE id_cam = ?");
     $ReqDelLog->execute([$IdCam]);
 
     $ReqDelCam = $DataBase->prepare("DELETE FROM cameras WHERE id_camera = ?");
     $ReqDelCam->execute([$IdCam]);
-    // NEED UPDATED DB
 }
 else if($Type == "Utilisateur")
 {
@@ -37,14 +36,13 @@ else if($Type == "Utilisateur")
 }
 else if($Type == "Vérification")
 {
-    $ReqIdCam = $DataBase->prepare("SELECT id_camera AS cam FROM log WHERE id_log = ?");
+    $ReqIdCam = $DataBase->prepare("SELECT id_cam AS cam FROM log WHERE id_log = ?");
     $ReqIdCam->execute([$IdLog]);
     $GetIdCam = $ReqIdCam->fetch();
     $IdCam = $GetIdCam['cam'];
 
-    $ReqUpdateCam = $DataBase->prepare("UPDATE cameras SET verifie = 1 WHERE id_cam = ?")
+    $ReqUpdateCam = $DataBase->prepare("UPDATE cameras SET verifie = 1 WHERE id_camera = ?")
     $ReqUpdateCam->execute[$IdCam]
-    // NEED UPDATE DB
 }
 
 header('Location: AdminView.php');
