@@ -307,7 +307,7 @@ https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixe
 {
     border: 1px solid black;
 }
-.AdminHead tr th:nth-child(1), .AdminHead tr th:nth-child(2), .AdminHead tr th:nth-child(3), .AdminHead tr th:nth-child(4)
+.AdminHead tr th:nth-child(1), .AdminHead tr th:nth-child(2), .AdminHead tr th:nth-child(3), .AdminHead tr th:nth-child(4), .AdminHead tr th:nth-child(5)
 {
     width: 17em;
 }
@@ -323,9 +323,17 @@ https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixe
 {
     border: 1px solid black;
 }
-.AdminBody tr th:nth-child(1), .AdminBody tr th:nth-child(2), .AdminBody tr th:nth-child(3), .AdminBody tr th:nth-child(4)
+.AdminBody tr th:nth-child(1), .AdminBody tr th:nth-child(2), .AdminBody tr th:nth-child(3), .AdminBody tr th:nth-child(4), .AdminBody tr th:nth-child(5)
 {
     width: 17em;
+}
+
+.AdminFormTable
+{
+    position: absolute;
+    top:40px;
+    left:90px;
+    font-size: 25px;
 }
 
 /* #endregion */
@@ -430,6 +438,12 @@ https://forum.alsacreations.com/topic-4-62439-1-TABLE--Scrollable-TBODY-and-fixe
 {
     position: relative;
     top: 450px;
+}
+
+.Note
+{
+    color: white;
+    font-size: 25px;
 }
 
 /* #endregion */
@@ -570,5 +584,3 @@ table
     position: relative;
     top: 500px;
 }
-
-
