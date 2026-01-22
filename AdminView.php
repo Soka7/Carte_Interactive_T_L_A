@@ -24,6 +24,7 @@
                 <th>Heure</th>
                 <th>Action</th>
                 <th>Utilisateur N°</th>
+                <th> Caméra N°</th>
             </tr>
         </thead>
         <tbody class="AdminBody">
@@ -41,6 +42,7 @@
                 <th><?= $row['temps']?></th>
                 <th><?= $row['type']?></th>
                 <th><?= $row['id_user']?></th>
+                <th><?= $row['id_cam']?></th>
             </tr>
             <?php endforeach; ?>
         </tbody>
