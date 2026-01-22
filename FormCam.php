@@ -1,13 +1,22 @@
 <?php
 session_start();
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Vérifie qu'une session a été commencé suite a une connexion, sinon, renvoie sur la page de connexion.
 if(!$_SESSION['id'])
 {
     header('Location: Login.html');
     exit;
 }
-$coordonnes = $_POST['coordonnees'];
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$Receive = json_decode(file_get_contents('php://input'), true);
+$Latit = $Receive['latitude'];
+$Longit = $Receive['longitude'];
+$lien = $Receive['lien_photo'];
+$title = $Receive['cam'];
+$Couple = ($Latit . ',' . $Longit);
+
 $Database = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8', 'root', 'ChuckNorris44');
 
 // Récupère et incrémente l'id qui sera utilisé pour créer la caméra.
@@ -17,9 +26,12 @@ $GetMaxId = $RequestMaxId->fetch();
 $MaxId = $GetMaxId['max'] + 1;
 
 // Ajoute la caméra a la base.
-$AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie) VALUES(?, ?, ?, ?, ?)');
-$AddCam->execute([$MaxId, $coordonnes, 'TO DO !', $_SESSION['id'], 0]);
+$AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie, Titre) VALUES(?, ?, ?, ?, ?, ?)');
+$AddCam->execute([$MaxId, $Couple, $lien, $_SESSION['id'], 0, $title]);
 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////
 // Récupère et incrémente l'id qui sera utilisé pour créer la log.
 $RequestMaxIdLog = $Database->prepare("SELECT MAX(id_log) AS max FROM log");
 $RequestMaxIdLog->execute();
