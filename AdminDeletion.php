@@ -20,6 +20,7 @@ else if($Type == 'Camera')
 
     $ReqDelCam = $DataBase->prepare("DELETE FROM cameras WHERE id_camera = ?");
     $ReqDelCam->execute([$IdCam]);
+    // NEED UPDATED DB
 }
 else if($Type == "Utilisateur")
 {
@@ -33,6 +34,17 @@ else if($Type == "Utilisateur")
 
     $ReqDelUser = $DataBase->prepare("DELETE FROM login WHERE id_user = ?");
     $ReqDelUser->execute([$IdUser]);
+}
+else if($Type == "Vérification")
+{
+    $ReqIdCam = $DataBase->prepare("SELECT id_camera AS cam FROM log WHERE id_log = ?");
+    $ReqIdCam->execute([$IdLog]);
+    $GetIdCam = $ReqIdCam->fetch();
+    $IdCam = $GetIdCam['cam'];
+
+    $ReqUpdateCam = $DataBase->prepare("UPDATE cameras SET verifie = 1 WHERE id_cam = ?")
+    $ReqUpdateCam->execute[$IdCam]
+    // NEED UPDATE DB
 }
 
 header('Location: AdminView.php');

@@ -52,9 +52,11 @@
                 <td> <input type="radio" name = "type" value ="Log" id="type1" required>
                 <label for="type1"> Log</label>
                 <td> <input type="radio" name = "type" value ="Camera" id="type2" required>
-                <label for="type1"> Camera</label>
+                <label for="type2"> Camera</label>
                 <td> <input type="radio" name = "type" value ="Utilisateur" id="type3" required>
-                <label for="type1"> Utilisateur</label>
+                <label for="type3"> Utilisateur</label>
+                <td> <input type="radio" name = "type" value ="Vérification" id="type4" required>
+                <label for="type4"> Vérification</label>
             </tr>
             <tr>
                 <th> Id log : </th>
