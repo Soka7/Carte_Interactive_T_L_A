@@ -160,4 +160,18 @@ btn.addEventListener("click", () => {
 })
 
 
+
+
+// ...
+// Récupération du JSON depuis PHP
+    fetch("show_cams.php")
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(lieu => {
+                L.marker([lieu.ST_X, lieu.ST_Y])
+                    .addTo(map).bindPopup(
+                        `<b>jsppppppp`
+                    );
+            });
+        })
 //ChatGPT utilise pour mieux comprendre la source des erreurs.
