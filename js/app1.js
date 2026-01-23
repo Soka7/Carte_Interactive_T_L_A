@@ -25,8 +25,7 @@ marker.bindTooltip("Miroir d'eau", {
 
 var DeuxPins = []
 
-// UPDATED CAMERA CLICK HANDLER WITH DEBUGGING
-
+// UPDATED CAMERA CLICK HANDLER WITH DEBUGGING code de départ a la main modifie par claude
 function onMapClick(e) {
     console.log("Map clicked at:", e.latlng);
     
