@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `Cameras`
 --
 
-CREATE TABLE `Cameras` (
+CREATE TABLE `cameras` (
   `id_camera` int NOT NULL,
   `coordonnees` point DEFAULT NULL,
   `lien_photo` text,
@@ -41,7 +41,7 @@ CREATE TABLE `Cameras` (
 -- Structure de la table `Log`
 --
 
-CREATE TABLE `Log` (
+CREATE TABLE `log` (
   `id_log` int NOT NULL,
   `temps` text,
   `type` text,
@@ -55,7 +55,7 @@ CREATE TABLE `Log` (
 -- Structure de la table `Login`
 --
 
-CREATE TABLE `Login` (
+CREATE TABLE `login` (
   `id_user` int NOT NULL,
   `mdp` text,
   `email` text,
@@ -69,13 +69,13 @@ CREATE TABLE `Login` (
 --
 -- Index pour la table `Cameras`
 --
-ALTER TABLE `Cameras`
+ALTER TABLE `cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
 -- Index pour la table `Log`
 --
-ALTER TABLE `Log`
+ALTER TABLE `log`
   ADD PRIMARY KEY (`id_log`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_cam` (`id_cam`);
@@ -83,7 +83,7 @@ ALTER TABLE `Log`
 --
 -- Index pour la table `Login`
 --
-ALTER TABLE `Login`
+ALTER TABLE `login`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -93,9 +93,9 @@ ALTER TABLE `Login`
 --
 -- Contraintes pour la table `Log`
 --
-ALTER TABLE `Log`
-  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `Login` (`id_user`),
-  ADD CONSTRAINT `Log_ibfk_2` FOREIGN KEY (`id_cam`) REFERENCES `Cameras` (`id_camera`);
+ALTER TABLE `log`
+  ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`),
+  ADD CONSTRAINT `Log_ibfk_2` FOREIGN KEY (`id_cam`) REFERENCES `cameras` (`id_camera`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
