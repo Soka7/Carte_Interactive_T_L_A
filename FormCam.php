@@ -9,26 +9,39 @@ if(!$_SESSION['id'])
     exit;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
 $Receive = json_decode(file_get_contents('php://input'), true);
-$Latit = $Receive['latitude'];
-$Longit = $Receive['longitude'];
-$lien = $Receive['lien_photo'];
-$title = $Receive['cam'];
-$Couple = ($Latit . ',' . $Longit);
 
+$act = $Receive['action'];
 $Database = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8', 'root', 'ChuckNorris44');
 
-// Récupère et incrémente l'id qui sera utilisé pour créer la caméra.
-$RequestMaxId = $Database->prepare("SELECT MAX(id_camera) AS max FROM cameras");
-$RequestMaxId->execute();
-$GetMaxId = $RequestMaxId->fetch();
-$MaxId = $GetMaxId['max'] + 1;
+switch ($act){
 
-// Ajoute la caméra a la base.
-$AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie, Titre) VALUES(?, ?, ?, ?, ?, ?)');
-$AddCam->execute([$MaxId, $Couple, $lien, $_SESSION['id'], 0, $title]);
+    case "Add":
+        $Latit = $Receive['latitude'];
+        $Longit = $Receive['longitude'];
+        $lien = $Receive['lien_photo'];
+        $title = $Receive['cam'];
 
+        // Récupère et incrémente l'id qui sera utilisé pour créer la caméra.
+        $RequestMaxId = $Database->prepare("SELECT MAX(id_camera) AS max FROM cameras");
+        $RequestMaxId->execute();
+        $GetMaxId = $RequestMaxId->fetch();
+        $MaxId = $GetMaxId['max'] + 1;
+
+        // Ajoute la caméra a la base.
+        $AddCam = $Database->prepare('INSERT INTO cameras(id_camera, coordonnees, lien_photo, origin_user, verifie, Titre) VALUES(?, POINT(?, ?), ?, ?, ?, ?)');
+        $AddCam->execute([$MaxId, $Longit, $Latit, $lien, $_SESSION['id'], 0, $title]);
+        break;
+
+    case "Ask":
+        $GetCams = $Database->prepare('SELECT id_camera, Titre, lien_photo, X(coordonnees) AS longitude, Y(coordonnees) AS latitude FROM cameras');
+        $GetCams->execute();
+        $Datas = $GetCams->fetchAll(PDO::FETCH_ASSOC);
+
+        header('Content-Type: application/json');
+        echo json_encode($Datas);
+        exit;
+};
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +56,5 @@ $RequestLog = $Database->prepare("INSERT INTO
                                     `log` (id_log, temps, `type`, id_user)
                                     VALUES (?, ?, ?, ?)");
 $RequestLog->execute([$MaxIdLog, date("j/m/Y h:i:s"), "Ajout Caméra", $_SESSION['id']]);
-header('Location: index1.html');
 exit;
 ?>

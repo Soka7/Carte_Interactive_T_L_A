@@ -25,6 +25,99 @@ marker.bindTooltip("Miroir d'eau", {
 
 var DeuxPins = []
 
+function onMapClickALL(e, x, y) {
+    let marker = L.marker([x, y], {title: "More info",});
+
+    // ajout à la carte
+    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>Ajouter une caméra ?</p><br><form id = 'FOOORM'><input placeholder = 'Titre' type='text' name='cam' required><br><input placeholder = 'Lien photo (Url)' type = 'text' name = 'lien_photo' required><input id = 'FormBtn' type = 'submit'></form></div>");
+    
+    // bulle avec texte
+    marker.bindTooltip([x, y].toString(), {
+    direction: "top",
+    permanent: true,
+    offset: [-15,-15], // Décalage a fins ésthétiques.
+    opacity: 0.6
+    }).openTooltip();
+
+    marker.on("popupopen", () => {
+
+        const frm = document.getElementById('FOOORM');
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const fData = new FormData(frm);
+
+            const data = {
+                cam: fData.get("cam"),
+                lien_photo: fData.get("lien_photo"),
+                latitude: lati,
+                longitude: long,
+                action: "Add"
+            };
+
+            fetch('FormCam.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+        });
+
+        const BoutonForm = document.getElementById("FormBtn");
+        if (BoutonForm) {
+            BoutonForm.addEventListener("click", () =>{
+                window.alert("If you are not logged in you will be redirected to the login menu.");
+            });
+        };
+    });
+
+    var circle = L.circle(e.latlng, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 10
+    }).addTo(map);
+
+    var lati = x;
+    var long = y;
+
+    DeuxPins.push([lati, long])
+
+    for (let i = 0; i < DeuxPins.length; i++){
+
+        for (let n = i + 1; n < DeuxPins.length; n++){
+            let p1 = L.latLng(DeuxPins[i])
+            let p2 = L.latLng(DeuxPins[n])
+            let di = p1.distanceTo(p2)
+            var line = L.polyline([DeuxPins[i], DeuxPins[n]], {
+                color: "red",
+                weight: 3,
+                dashArray: "10, 10"
+            }).addTo(map);
+
+            line.bindTooltip(di.toFixed(2), {
+                permanent: false,
+                direction: "center"
+            }).openTooltip();
+        }
+    }
+}
+
+fetch('FormCam.php', method: 'POST', body: JSON.stringify({message: "Send_Cams", action: "Ask"}), headers: {"Content-Type": "application/json"})
+.then(response => response.json())
+.then(cams => {
+    cams.forEach(cam => {
+        map.on('click', onMapClickALL(cam.longitude, cam.latitude));
+    });
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var DeuxPins = []
+
 function onMapClick(e) {
     let marker = L.marker(e.latlng, {title: "More info",});
 
@@ -52,7 +145,8 @@ function onMapClick(e) {
                 cam: fData.get("cam"),
                 lien_photo: fData.get("lien_photo"),
                 latitude: lati,
-                longitude: long
+                longitude: long,
+                action: "Add"
             };
 
             fetch('FormCam.php', {
