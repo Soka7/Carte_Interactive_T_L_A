@@ -164,14 +164,28 @@ btn.addEventListener("click", () => {
 
 // ...
 // Récupération du JSON depuis PHP
-    fetch("show_cams.php")
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(lieu => {
-                L.marker([lieu.ST_X, lieu.ST_Y])
-                    .addTo(map).bindPopup(
-                        `<b>jsppppppp`
-                    );
-            });
-        })
+//    fetch("show_cams.php")
+//        .then(data => {
+//
+//                L.marker([lieu.ST_X, lieu.ST_Y])
+    ////                    `<b>jsppppppp`
+    //                );
+    //        });
+    //    })
 //ChatGPT utilise pour mieux comprendre la source des erreurs.
+
+
+all_cam.forEach(
+    function (cam){
+
+        // écriture du nom dans une balise p
+        //let new_p = document.createElement("p");            // création de la balise
+        //let texte = document.createTextNode(cam["longitude"]);   // création du texte
+        //new_p.appendChild(texte);                           // insertion du texte dans la balise p
+        console.log(cam["longitude"]);
+        // ajout de la balise p dans la balise div #affichage
+        //document.getElementById("affichage").appendChild(new_p);
+
+        // ajout d'une classe éventuellement
+        //new_p.classList.add("classe_de_p"); 
+    });

@@ -1,3 +1,5 @@
+<script src="js/app1.js" defer></script>
+
 <?php
 
     // Connect to database
@@ -12,14 +14,20 @@
     
     $get_all_cam = $Database->prepare("
         SELECT ST_X(coordonnees) AS longitude,
-        ST_Y(coordonnees) AS latitude,s
+        ST_Y(coordonnees) AS latitude,
         FROM cameras");
     $get_all_cam->execute();
     $all_cam = $get_all_cam->fetchAll();
 
-    echo json_encode($all_cam);
+    var_dump($all_cam);
 
     
 
 
 ?>
+
+
+<script>
+    const all_cam = <?php echo json_encode($all_cam, JSON_NUMERIC_CHECK); ?>
+    console.log(all_cam);
+</script>
