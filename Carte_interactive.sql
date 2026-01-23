@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Carte_interactive`
+-- Base de données : `carte_interactive`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Cameras`
+-- Structure de la table `cameras`
 --
 
 CREATE TABLE `cameras` (
@@ -38,7 +38,7 @@ CREATE TABLE `cameras` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Log`
+-- Structure de la table `log`
 --
 
 CREATE TABLE `log` (
@@ -52,7 +52,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Login`
+-- Structure de la table `login`
 --
 
 CREATE TABLE `login` (
@@ -67,13 +67,13 @@ CREATE TABLE `login` (
 --
 
 --
--- Index pour la table `Cameras`
+-- Index pour la table `cameras`
 --
 ALTER TABLE `cameras`
   ADD PRIMARY KEY (`id_camera`);
 
 --
--- Index pour la table `Log`
+-- Index pour la table `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id_log`),
@@ -81,7 +81,7 @@ ALTER TABLE `log`
   ADD KEY `id_cam` (`id_cam`);
 
 --
--- Index pour la table `Login`
+-- Index pour la table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id_user`);
@@ -91,7 +91,7 @@ ALTER TABLE `login`
 --
 
 --
--- Contraintes pour la table `Log`
+-- Contraintes pour la table `log`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `Log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id_user`),
