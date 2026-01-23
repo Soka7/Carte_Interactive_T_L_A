@@ -25,26 +25,43 @@ marker.bindTooltip("Miroir d'eau", {
 
 var DeuxPins = []
 
+// UPDATED CAMERA CLICK HANDLER WITH DEBUGGING code de départ a la main modifie par claude
 function onMapClick(e) {
-    let marker = L.marker(e.latlng, {title: "More info",});
-
-    // ajout à la carte
-    marker.addTo(map).bindPopup("<div class = pop><div class = 'pop_text'><h1>Camera</h1><p>Ajouter une caméra ?</p><br><form id = 'FOOORM'><input placeholder = 'Titre' type='text' name='cam' required><br><input placeholder = 'Lien photo (Url)' type = 'text' name = 'lien_photo' required><input id = 'FormBtn' type = 'submit'></form></div>");
+    console.log("Map clicked at:", e.latlng);
     
-    // bulle avec texte
+    let marker = L.marker(e.latlng, {title: "More info"});
+
+    // Add to map with popup
+    marker.addTo(map).bindPopup("<div class='pop'><div class='pop_text'><h1>Camera</h1><p>Ajouter une caméra ?</p><br><form id='FOOORM' type='post' ACTION='FormCam.php'><input placeholder='Titre' type='text' name='cam' required><br><input placeholder='Lien photo (Url)' type='text' name='lien_photo' required><input id='FormBtn' type='submit'></form></div></div>");
+    
+    // Tooltip
     marker.bindTooltip(e.latlng.toString(), {
-    direction: "top",
-    permanent: true,
-    offset: [-15,-15], // Décalage a fins ésthétiques.
-    opacity: 0.6
+        direction: "top",
+        permanent: true,
+        offset: [-15,-15],
+        opacity: 0.6
     }).openTooltip();
 
-    marker.on("popupopen", () => {
+    // Store coordinates
+    var lati = e.latlng.lat;
+    var long = e.latlng.lng;
+    
+    console.log("Stored coordinates - Lat:", lati, "Long:", long);
 
+    // Handle popup open
+    marker.on("popupopen", () => {
+        console.log("Popup opened");
+        
         const frm = document.getElementById('FOOORM');
+        
+        if (!frm) {
+            console.error("Form not found!");
+            return;
+        }
 
         frm.addEventListener('submit', (e) => {
             e.preventDefault();
+            console.log("Form submitted");
 
             const fData = new FormData(frm);
 
@@ -55,24 +72,52 @@ function onMapClick(e) {
                 longitude: long
             };
 
+            console.log("Data to send:", data);
+            console.log("JSON string:", JSON.stringify(data));
+
             fetch('FormCam.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log("Response status:", response.status);
+                console.log("Response headers:", response.headers);
+                return response.text(); // Get text first to see what we get
+            })
+            .then(text => {
+                console.log("Response text:", text);
+                
+                // Check if it's a redirect or HTML
+                if (text.includes('<') || text.includes('html')) {
+                    console.warn("Received HTML instead of expected response");
+                    alert("Received HTML response. Check if you're logged in.");
+                } else if (text.includes('SUCCESS')) {
+                    alert("Caméra ajoutée avec succès!");
+                    window.location.reload();
+                } else if (text.includes('ERROR')) {
+                    alert("Erreur: " + text);
+                } else {
+                    alert("Réponse inattendue: " + text);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Erreur de connexion: ' + error.message);
             });
-
         });
 
         const BoutonForm = document.getElementById("FormBtn");
         if (BoutonForm) {
-            BoutonForm.addEventListener("click", () =>{
-                window.alert("If you are not logged in you will be redirected to the login menu.");
+            BoutonForm.addEventListener("click", () => {
+                console.log("Submit button clicked");
             });
-        };
+        }
     });
 
+    // Circle and polyline code...
     var circle = L.circle(e.latlng, {
         color: 'red',
         fillColor: '#f03',
@@ -80,17 +125,13 @@ function onMapClick(e) {
         radius: 10
     }).addTo(map);
 
-    var lati = e.latlng.lat;
-    var long = e.latlng.lng;
-
-    DeuxPins.push([lati, long])
+    DeuxPins.push([lati, long]);
 
     for (let i = 0; i < DeuxPins.length; i++){
-
         for (let n = i + 1; n < DeuxPins.length; n++){
-            let p1 = L.latLng(DeuxPins[i])
-            let p2 = L.latLng(DeuxPins[n])
-            let di = p1.distanceTo(p2)
+            let p1 = L.latLng(DeuxPins[i]);
+            let p2 = L.latLng(DeuxPins[n]);
+            let di = p1.distanceTo(p2);
             var line = L.polyline([DeuxPins[i], DeuxPins[n]], {
                 color: "red",
                 weight: 3,
@@ -105,7 +146,7 @@ function onMapClick(e) {
     }
 }
 
-//////////////////////////////////////////////////////////////
+////////////////////////////////
 
 map.on('click', onMapClick);
 
@@ -117,5 +158,6 @@ btn.addEventListener("click", () => {
     map.invalidateSize()
     btn.classList.toggle("ex")
 })
+
 
 //ChatGPT utilise pour mieux comprendre la source des erreurs.

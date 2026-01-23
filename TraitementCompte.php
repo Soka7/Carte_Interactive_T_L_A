@@ -1,4 +1,9 @@
 <?php
+//methode claude pour afficher erreur
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 // Méthode post pour faire transiter les données de manière sécurisé.
 $mail = $_POST["mail"];
 $mdp = $_POST["mdp"];
