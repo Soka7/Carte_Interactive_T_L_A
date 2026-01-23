@@ -178,8 +178,10 @@ try {
 //file_put_contents('debug_log.txt', "Script completed\n\n", FILE_APPEND);
 
 //fichier modifié par claude pour debugger
+//il y a beaucoup de commentaires qui ont ete utilises pour debugger
 //enlever les file_put_contents qui sont utilisés pour debugger
 ?>
+
 
 
 
