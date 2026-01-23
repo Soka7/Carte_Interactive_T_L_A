@@ -240,8 +240,8 @@ button
     border-radius: 10px;
     position: fixed;
     color: white;
-    left: 1000px;
-    top: 650px;
+    right: 30px;
+    bottom: 40px;
     z-index: 500000000000000000000000000000;
 }
 .Expand.ex
@@ -254,8 +254,8 @@ button
     text-align: center;
     border-radius: 10px;
     color: white;
-    left: 1500px;
-    top: 700px;
+    right: 30px;
+    bottom: 40px;
     z-index: 500000000000000000000000000000;
 }
 .Expand:hover .inner
@@ -271,10 +271,9 @@ button
     background: transparent;
     text-align: center;
     border-radius: 10px;
-    position: absolute;
+    position: static;
     color: white;
-    left: -650px;
-    top: -300px;
+    top: 20px;
     z-index: 5;
 }
 

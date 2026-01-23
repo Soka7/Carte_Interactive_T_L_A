@@ -1,9 +1,14 @@
 <?php
+//methode claude pour afficher erreur
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 // Méthode post pour faire transiter les données de manière sécurisé.
 $mail = $_POST["mail"];
 $mdp = $_POST["mdp"];
 
-$DataBase = new PDO('mysql:host=localhost;port=3306;dbname=carte_interactive;charset=utf8','root','ChuckNorris44');
+$DataBase = new PDO('mysql:host=localhost;port=3306;dbname=Carte_Interactive;charset=utf8','root','ChuckNorris44');
 
 // Vérifie que l'email de l'utilisateur n'est pas déja utilisé.
 $RequestExistingUser = $DataBase->prepare("SELECT COUNT(*) AS valid FROM login WHERE email=?");
