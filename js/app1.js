@@ -159,4 +159,5 @@ btn.addEventListener("click", () => {
     btn.classList.toggle("ex")
 })
 
+
 //ChatGPT utilise pour mieux comprendre la source des erreurs.
